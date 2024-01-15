@@ -112,3 +112,29 @@ int string_printf(String *str, char const *const _Format, ...)
 
     return _Result;
 }
+
+int string_pop_front(String* str, char* ch) {
+    if (str->length > 0) {
+        if (ch != NULL) {
+            *ch = str->ptr[0];
+        }
+        memmove(str->ptr, str->ptr + 1, --str->length + 1);
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+int string_pop_back(String* str, char* ch) {
+    if (str->length > 0) {
+        if (ch != NULL) {
+            *ch = str->ptr[str->length - 1];
+        }
+        str->ptr[--str->length] = '\0';
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}

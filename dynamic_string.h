@@ -9,9 +9,10 @@
 
 /**
  *Dynamic string type
- * 
+ *
  */
-typedef struct String {
+typedef struct String
+{
     char *ptr;
     size_t length;
     size_t capacity;
@@ -67,7 +68,7 @@ void string_append(String *str, const char *other);
 
 /**
  *Reserves room for at least additional more characters
- *This function will reserve at least additional characters but might be more to decrease the amount of allocations 
+ *This function will reserve at least additional characters but might be more to decrease the amount of allocations
  *@param[out] str The string pointer object
  *@param[in] additional The amount of space to reserve
  */
@@ -75,7 +76,7 @@ void string_reserve(String *str, size_t additional);
 
 /**
  *Reserves room for at least additional more characters
- *This function will reserve at least additional characters but might be inefficient if several allocations will take place. In this case please refer to string_reserve 
+ *This function will reserve at least additional characters but might be inefficient if several allocations will take place. In this case please refer to string_reserve
  *@param[out] str The string pointer object
  *@param[in] additional The amount of space to reserve
  */
@@ -88,8 +89,22 @@ void string_reserve_exact(String *str, size_t additional);
  *@param[in] fornat The string format
  *@return Error code for printing will be the same as defined by vsnprintf
  */
-int string_printf(String *str, char const* const _Format, ...);
+int string_printf(String *str, char const *const _Format, ...);
 
+/**
+ *Appends another string at the end of the dynamic string and expands if needed
+ *@param[out] str The string pointer object
+ *@param[out] other The char popped from the string
+ *@return if the string is empty this will return 0 and 1 if it returned a value
+ */
+int string_pop_front(String *str, char *ch);
 
+/**
+ *Appends another string at the end of the dynamic string and expands if needed
+ *@param[out] str The string pointer object
+ *@param[out] other The char popped from the string
+ *@return if the string is empty this will return 0 and 1 if it returned a value
+ */
+int string_pop_back(String *str, char *ch);
 
 #endif
